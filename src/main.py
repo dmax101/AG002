@@ -6,7 +6,8 @@ config = {
   'password': 'toor',
   'host': 'DMAX101Sofia.local',
   'port': 6603,
-  'database': 'statlog'
+  'database': 'statlog',
+  'teste': 'teste'
 }
 
 def main():
