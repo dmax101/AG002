@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine
 import pandas as pd
-import os
 
 config = {
   'user': 'root',
@@ -13,35 +12,32 @@ config = {
 def main():
 
     db_connection_str = 'mysql+pymysql://{}:{}@{}:{}/{}'.format(
-      config['user'],
-      config['password'],
-      config['host'],
-      config['port'],
-      config['database'])
-
+        config['user'],
+        config['password'],
+        config['host'],
+        config['port'],
+        config['database']
+      )
     
     codetable = open('documents//codetable.txt', 'rt')
     lines = codetable.readlines()
-    german_english = {}
+    german_english = {'id': 'id'}
     
     for line in lines:
       if('$' in line.strip()):
         line_splited = line.strip()[2:-1].split()
         german_english.update({line_splited[0]: line_splited[2]})
 
-    print(german_english)
-
     db_connection = create_engine(db_connection_str)
 
-    column_names = ['id', 'status', 'duration', 'credit_history', 'purpose', 'amount', 'savings', 'employment_duration', 'installment_rate', 'personal_status_sex', 'other_debtors', 'present_residence', 'property', 'age', 'other_installment_plans', 'housing', 'number_credits', 'job', 'people_liable', 'telephone', 'foreign_worker', 'credit_risk']
+    column_names = list(german_english.values())
 
     df = pd.read_sql('SELECT * FROM germancredit', con=db_connection)
 
     df.columns = column_names
 
-    print(df.head())
+    print(df)
 
-    
 
 if __name__ == "__main__":
     main()
