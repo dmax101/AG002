@@ -124,34 +124,63 @@ def main():
   
   ####### User input
 
-  answers = {}
+  repeat = True
 
-  print('Instert the values for:')
+  while(repeat):
+    answers = {}
 
-  for item in column_names[1:-1]:
-    print(50 * "-")
-    print(item + " " + ((49 - len(item)) * '-'))
-    print("description:")
-    print(description[item])
-    print(50 * "-")
-    answers.update({item: input(item + ' choice: ')})
-    print(50 * "-")
+    print('Instert the values for:')
 
-  X_user = np.array([list(answers.values())], dtype=np.int64)
-  X_user_std = sc.transform(X_user)
+    for item in column_names[1:-1]:
+      print(50 * "-")
+      print(item + " " + ((49 - len(item)) * '-'))
+      print("description:")
+      print(description[item])
+      print(50 * "-")
+      answers.update({item: input(item + ' choice: ')})
+      print(50 * "-")
 
-  y_user_pred = ppn.predict(X_user_std)
+    X_user = np.array([list(answers.values())], dtype=np.int64)
+    X_user_std = sc.transform(X_user)
 
-  if int(y_user_pred[0]) == 0:
-    print(50 * "\x1b[0;30;41m!\x1b[0m")
-    print('\x1b[0;30;41m' + "That profile has a BAD credit risk" + '\x1b[0m')
-    print(50 * "\x1b[0;30;41m!\x1b[0m")
-  else:
-    print(50 * "\x1b[6;30;42m$\x1b[0m")
-    print('\x1b[6;30;42m' + "That profile has a GOOD credit risk" + '\x1b[0m')
-    print(50 * "\x1b[6;30;42m$\x1b[0m")
+    y_user_pred = ppn.predict(X_user_std)
 
-  print('\r')  
+    print(50 * '-')
+    print("Resume:")
+    print(50 * '-')
+    for answer in answers:
+      print(answer + ": " + answers[answer])
+    print(50 * '-')
+
+    if int(y_user_pred[0]) == 0:
+      print(50 * "\x1b[0;30;41m!\x1b[0m")
+      print('\x1b[0;30;41m' + "That profile has a BAD credit risk" + '\x1b[0m')
+      print(50 * "\x1b[0;30;41m!\x1b[0m")
+    else:
+      print(50 * "\x1b[6;30;42m$\x1b[0m")
+      print('\x1b[6;30;42m' + "That profile has a GOOD credit risk" + '\x1b[0m')
+      print(50 * "\x1b[6;30;42m$\x1b[0m")
+
+    print(50 * '-')
+    ans = input('Try again? (y) yes| (n) no: ').lower()
+    if(ans == 'y'):
+      repeat = True
+      print(50 * "-")
+      print('\r')
+      print(50 * "-")
+    elif(ans == 'yes'):
+      repeat = True
+      print(50 * "-")
+      print('\r')
+      print(50 * "-")
+    else:
+      repeat = False
+
+    
+  
+
+
+  print('\r')
   print('\x1b[6;30;42m' + 'Programa encerrado com sucesso' + '\x1b[0m')
 
 if __name__ == "__main__":
