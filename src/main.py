@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import pprint
 from sqlalchemy import create_engine
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -175,10 +174,6 @@ def main():
       print(50 * "-")
     else:
       repeat = False
-
-    
-  
-
 
   print('\r')
   print('\x1b[6;30;42m' + 'Programa encerrado com sucesso' + '\x1b[0m')
