@@ -17,6 +17,8 @@ config = {
 }
 
 def main():
+
+  print("Starting Credit Analisis Program...")
   ####### Translating column names
   german_english = {'id': 'id'}
   description = {}
@@ -37,8 +39,6 @@ def main():
       description.update({
         current_item_en: description[current_item_en] + line
       })
-        
-  #pprint.pprint(description)
 
   ####### Starting connection with mySQL to getting data
   db_connection_str = 'mysql+pymysql://{}:{}@{}:{}/{}'.format(
@@ -49,14 +49,18 @@ def main():
       config['database']
   )
 
+  print("Creating connection with MySQL Database...")
   db_connection = create_engine(db_connection_str)
 
   column_names = list(german_english.values())
 
+  print("Reading data from database... please wait...", end=" ")
   df = pd.read_sql('SELECT * FROM germancredit', con=db_connection)
+  print("Done.")
   df.columns = column_names
 
   ####### Preparing the data and spliting in to train and test
+  print("Preparing data...")
   X = df.iloc[:,1:-1].to_numpy() ## Data
   y = df.iloc[:,-1:].T.to_numpy()[0] ## Target
 
@@ -80,8 +84,9 @@ def main():
   
   ####### Training model with data
   # Creating an instance of Perceptron
+  print("Trainning ML model (Perceptron)...")
   n_iter = 400
-  eta0 = 0.1
+  eta0 = 0.1 # Learn Rate
 
   ppn = Perceptron(
     max_iter=n_iter,
@@ -90,21 +95,34 @@ def main():
   )
   
   # fit the model to the standardized data
+  print("Fitting the model...")
   ppn.fit(
     X_train_std,
     y_train
   )
 
   ####### Making predictions
+  print("Making predictions with test data...")
   y_pred = ppn.predict(X_test_std)
 
   ####### Getting measures
+  print("Getting measuriments...\r")
+
   print(50 * "-")
   print('Measuriments')
   print(50 * "-")
-  print("accuracy: {0:.2f}%".format(accuracy_score(y_test, y_pred) * 100))
+  accuracy = "accuracy: {0:.2f}%".format(accuracy_score(y_test, y_pred) * 100)
+  print('\x1b[6;30;42m' + accuracy + '\x1b[0m')
   print(classification_report(y_test, y_pred))
   print(50 * "-")
+
+  input("press enter to continue...")
+
+  print(50 * "-")
+  print('\r')
+  print(50 * "-")
+  
+  ####### User input
 
   answers = {}
 
@@ -124,15 +142,16 @@ def main():
 
   y_user_pred = ppn.predict(X_user_std)
 
-  if y_user_pred[0] == 0:
-    print(50 * "!")
-    print('\x1b[0;30;41m' + "That's profile has a BAD credit risk" + '\x1b[0m')
-    print(50 * "!")
+  if int(y_user_pred[0]) == 0:
+    print(50 * "\x1b[0;30;41m!\x1b[0m")
+    print('\x1b[0;30;41m' + "That profile has a BAD credit risk" + '\x1b[0m')
+    print(50 * "\x1b[0;30;41m!\x1b[0m")
   else:
-    print(50 * "$")
-    print('\x1b[6;30;42m' + "That's profile has a GOOD credit risk" + '\x1b[0m')
-    print(50 * "$")
-    
+    print(50 * "\x1b[6;30;42m$\x1b[0m")
+    print('\x1b[6;30;42m' + "That profile has a GOOD credit risk" + '\x1b[0m')
+    print(50 * "\x1b[6;30;42m$\x1b[0m")
+
+  print('\r')  
   print('\x1b[6;30;42m' + 'Programa encerrado com sucesso' + '\x1b[0m')
 
 if __name__ == "__main__":
