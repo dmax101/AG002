@@ -100,6 +100,8 @@ def main():
 
   ####### Getting measures
   print(50 * "-")
+  print('Measuriments')
+  print(50 * "-")
   print("accuracy: {0:.2f}%".format(accuracy_score(y_test, y_pred) * 100))
   print(classification_report(y_test, y_pred))
   print(50 * "-")
@@ -123,9 +125,15 @@ def main():
   y_user_pred = ppn.predict(X_user_std)
 
   if y_user_pred[0] == 0:
-    print("That's profile has a BAD credit risk")
+    print(50 * "!")
+    print('\x1b[0;30;41m' + "That's profile has a BAD credit risk" + '\x1b[0m')
+    print(50 * "!")
   else:
-    print("That's profile has a GOOD credit risk")
+    print(50 * "$")
+    print('\x1b[6;30;42m' + "That's profile has a GOOD credit risk" + '\x1b[0m')
+    print(50 * "$")
+    
+  print('\x1b[6;30;42m' + 'Programa encerrado com sucesso' + '\x1b[0m')
 
 if __name__ == "__main__":
   main()
