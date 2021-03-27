@@ -46,7 +46,7 @@ $ python main.py
 ## Programa
 Após a execução, a aplicação será encarregada de treinar com 80% dos dados e testar em 20% deles.
 
-![Janela da Aplicação](/assets/indice.png)
+![Janela da Aplicação](/assets/indice.jpeg)
 
 Podemos interpretar os resultados da seguinte forma:
 
