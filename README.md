@@ -58,5 +58,5 @@ Podemos interpretar os resultados da seguinte forma:
  - *Support:* O suporte é o número de ocorrência de verdadeiros positivos (instâncias de uma determinada classe que foram classificados corretamente para esta mesma classe), e ele pode ser comparado ao número total de instâncias que são desta classe.
 
  - *Acuraccy:* A acurácia informa em geral o quão o seu modelo está acertando.
- - *Macro:* Calcule a métrica para cada classe e calcule a média não ponderada
- - *Weighted:* Calcula a métrica para cada classe e calcule a média ponderada com base no número de amostras por classe.
+ - *Macro:* Calcule a métrica para cada classe e calcula a média não ponderada
+ - *Weighted:* Calcula a métrica para cada classe e calcula a média ponderada com base no número de amostras por classe.
