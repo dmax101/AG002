@@ -16,7 +16,7 @@ Para a instalação faça o download do arquivo zip [aqui](https://github.com/dm
 
 Extraia o conteúdo em uma pasta.
 
-![Download Zip](/assets/zip.png)
+![Download Zip](/assets/download.png)
 
 
 Se preferir você pode clonar o projeto com o git, caso tenha instalado em sua máquina executando o comando:
