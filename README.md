@@ -10,6 +10,8 @@
 
 Este trabalho tem o intúito de treinar e testar o conjunto de dados a partir do modelo de classificação Perceptron.
 
+O vídeo de apresentação pode ser acessado[ aqui ](https://youtu.be/2frEPIxXJKg), ou na pasta ".\Video"
+
 ## Instalação
 
 Para a instalação faça o download do arquivo zip [aqui](https://github.com/dmax101/AG002.git).
