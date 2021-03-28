@@ -10,8 +10,8 @@ from sklearn.metrics import classification_report
 config = {
   'user': 'root',
   'password': 'toor',
-  'host': 'DMAX101Sofia.local',
-  'port': 6603,
+  'host': 'localhost',
+  'port': 3306,
   'database': 'statlog'
 }
 
